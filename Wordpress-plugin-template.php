@@ -18,18 +18,9 @@ require_once plugin_dir_path(__FILE__) . 'lib/GitHubUpdater.php';
 
 // Initialize GitHub Updater
 if (is_admin()) {
-    $config = array(
-        'slug' => plugin_basename(__FILE__),
-        'proper_folder_name' => 'Wordpress-plugin-template',
-        'api_url' => 'https://api.github.com/repos/LennardKu/Wordpress-plugin-template',
-        'raw_url' => 'https://raw.github.com/LennardKu/Wordpress-plugin-template/master',
-        'github_url' => 'https://github.com/LennardKu/Wordpress-plugin-template',
-        'zip_url' => 'https://github.com/LennardKu/Wordpress-plugin-template/archive/master.zip',
-        'sslverify' => true,
-        'requires' => '3.0',
-        'tested' => '5.8',
-        'readme' => 'README.md',
-    );
-
-    new GitHubUpdater($config);
+   $updater = new Custom_Greeting_Updater(__FILE__);
+    $updater->set_username('your-username');
+    $updater->set_repository('custom-greeting-plugin');
+    $updater->authorize('your-github-access-token');
+    $updater->initialize();
 }
